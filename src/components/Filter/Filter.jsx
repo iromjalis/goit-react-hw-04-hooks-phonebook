@@ -7,7 +7,7 @@ const Filter = ({ value, handleFilterChange }) => {
     <div className="FilterWrapper">
       <form action="">
         <label htmlFor="">
-          <p> Find contacts by name</p>
+          {/* <p> Find contacts by name</p> */}
           <input
             placeholder="Find contacts"
             onChange={handleFilterChange}
