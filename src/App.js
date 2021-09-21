@@ -24,12 +24,6 @@ function App() {
     );
   });
 
-  // const filteredContacts = (contacts, filter) => {
-  //   return contacts.filter(({ name }) =>
-  //     name.includes(filter.toLocaleLowerCase())
-  //   );
-  // };
-
   //componentDidMount
   useEffect(() => {
     const contacts = window.localStorage.getItem("contacts");
@@ -44,7 +38,6 @@ function App() {
   }, [contacts]);
 
   const handleAddContact = (data) => {
-    console.log("name: ", name);
     if (contacts.some((contact) => contact.name === data.name)) {
       alert(`${data.name} already exists`);
       return;
@@ -55,19 +48,16 @@ function App() {
         id: shortid.generate(),
         ...data,
       };
-      console.log("newContact", newContact);
       return [newContact, ...contacts];
     });
     setName("");
     setNumber("");
   };
   const handleFilterChange = (e) => {
-    console.log(e.target.value);
     setFilter(e.currentTarget.value);
   };
 
   const handleDeleteContact = (contactId) => {
-    console.log("contactId: ", contactId);
     setContacts(contacts.filter(({ id }) => id !== contactId));
   };
   const getVisibleContacts = (contacts, filter) => {
@@ -78,9 +68,9 @@ function App() {
   return (
     <>
       <Container className="App">
-        {/* <h1>Phonebook</h1> */}
+        <h1>Phonebook</h1>
         <ContactForm name={name} number={number} onSubmit={handleAddContact} />
-        {/* <h2>Contacts</h2> */}
+        <h2>Contacts</h2>
         <Filter value={filter} onFilterChange={handleFilterChange} />
         <ContactList
           contacts={getVisibleContacts(contacts, filter)}

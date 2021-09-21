@@ -1,11 +1,15 @@
 import React from "react";
+import TextField from "@mui/material/TextField";
 
 const ContactFormNumber = ({ title, onChange, value }) => {
   return (
     <>
       <label htmlFor="">
-        {title}
-        <input
+        {/* {title} */}
+        <TextField
+          id="outlined-basic"
+          label={title}
+          variant="outlined"
           value={value}
           placeholder={title}
           onChange={onChange}

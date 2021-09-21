@@ -1,55 +1,54 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import shortid from "shortid";
-// import PropTypes from "prop-types";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 import css from "./ContactForm.module.css";
 import ContactFormName from "./ContactFormName";
 import ContactFormNumber from "./ContactFormNumber";
 
-class ContactForm extends Component {
-  state = {
-    name: "",
-    number: "",
-  };
+const ContactForm = ({ onSubmit }) => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
-  nameInputId = shortid.generate();
+  const nameInputId = shortid.generate();
 
-  numberInputId = shortid.generate();
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    if (e.target.name === "name") {
+      setName(value);
+    } else setNumber(value);
   };
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.setState({ name: "", number: "" });
+    const data = { name, number };
+    onSubmit(data);
+    setName("");
+    setNumber("");
   };
-  render() {
-    return (
-      <form className={css.ContactFormWrapper} onSubmit={this.handleSubmit}>
-        <ContactFormName
-          nameInputId={this.nameInputId}
-          title="name"
-          value={this.state.name}
-          onChange={this.handleChange}
-        />
-        <ContactFormNumber
-          title="number"
-          value={this.state.number}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Send</button>
-      </form>
-    );
-  }
-}
 
-ContactForm.propTypes = {
-  // bla: PropTypes.string,
-};
+  return (
+    <form className={css.ContactFormWrapper} onSubmit={handleSubmit}>
+      <ContactFormName
+        nameInputId={nameInputId}
+        title="name"
+        value={name}
+        onChange={handleChange}
+      />
+      <ContactFormNumber
+        title="number"
+        value={number}
+        onChange={handleChange}
+      />
 
-ContactForm.defaultProps = {
-  // bla: 'test',
+      <ButtonGroup
+        variant="contained"
+        aria-label="outlined primary button group"
+      >
+        <Button type="submit">Send</Button>
+      </ButtonGroup>
+    </form>
+  );
 };
 
 export default ContactForm;

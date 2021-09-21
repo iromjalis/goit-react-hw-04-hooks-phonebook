@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
-//import { Test } from './Filter.styles';
+import TextField from "@mui/material/TextField";
 
 const Filter = ({ value, onFilterChange }) => {
   return (
     <div className="FilterWrapper">
       <form action="">
         <label htmlFor="">
-          {/* <p> Find contacts by name</p> */}
-          <input
+          <p> Find contacts by name</p>
+          <TextField
+            id="outlined-basic"
+            label="Filter"
+            variant="outlined"
             placeholder="Find contacts"
             onChange={onFilterChange}
             type="text"
