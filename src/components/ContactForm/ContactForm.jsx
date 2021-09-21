@@ -17,12 +17,10 @@ class ContactForm extends Component {
   numberInputId = shortid.generate();
   handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     this.setState({ [name]: value });
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.handleSubmit(this.state);
     this.props.onSubmit(this.state);
     this.setState({ name: "", number: "" });
   };

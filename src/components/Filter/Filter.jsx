@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 //import { Test } from './Filter.styles';
 
-const Filter = ({ value, handleFilterChange }) => {
+const Filter = ({ value, onFilterChange }) => {
   return (
     <div className="FilterWrapper">
       <form action="">
@@ -10,7 +10,7 @@ const Filter = ({ value, handleFilterChange }) => {
           {/* <p> Find contacts by name</p> */}
           <input
             placeholder="Find contacts"
-            onChange={handleFilterChange}
+            onChange={onFilterChange}
             type="text"
             name="name"
             value={value}
