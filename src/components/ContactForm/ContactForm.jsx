@@ -15,7 +15,7 @@ const ContactForm = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (e.target.name === "name") {
+    if (name === "name") {
       setName(value);
     } else setNumber(value);
   };

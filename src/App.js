@@ -65,13 +65,14 @@ function App() {
       name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
   };
+
   return (
     <>
       <Container className="App">
         <h1>Phonebook</h1>
-        <ContactForm name={name} number={number} onSubmit={handleAddContact} />
+        <ContactForm onSubmit={handleAddContact} />
         <h2>Contacts</h2>
-        <Filter value={filter} onFilterChange={handleFilterChange} />
+        <Filter onFilterChange={handleFilterChange} />
         <ContactList
           contacts={getVisibleContacts(contacts, filter)}
           onDeleteContact={handleDeleteContact}
